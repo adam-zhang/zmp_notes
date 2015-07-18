@@ -5,8 +5,10 @@ find_package(Qt4 REQUIRED)
 include(${QT_USE_FILE})
 set(QT_DONT_USE_QTGUI TRUE)
 set(QT_USE_QTSQL TRUE)
-set(sources Precondition.cpp)
-set(headers Precondition.h)
+set(sources Precondition.cpp
+	BaseObject.cpp)
+set(headers Precondition.h
+	BaseObject.h)
 add_library(database ${sources}
 	${headers})
 target_link_libraries(database ${QT_LIBRARIES})
