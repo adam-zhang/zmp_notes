@@ -16,7 +16,7 @@ private:
 	QUuid id_;
 
 public:
-	const QUuid& id();
+	const QUuid& id()const;
 	void setId(const QUuid& id);
 
 };

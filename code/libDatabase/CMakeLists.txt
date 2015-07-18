@@ -8,10 +8,13 @@ set(QT_USE_QTSQL TRUE)
 set(sources Precondition.cpp
 	BaseObject.cpp
 	User.cpp
+	Content.cpp
 	)
 set(headers Precondition.h
 	BaseObject.h
-	User.h)
+	User.h
+	Content.h
+	)
 add_library(database SHARED ${sources}
 	${headers})
 target_link_libraries(database ${QT_LIBRARIES})

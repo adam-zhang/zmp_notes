@@ -12,7 +12,7 @@ BaseObject::BaseObject(QObject* parent)
 {
 }
 
-const QUuid& BaseObject::id()
+const QUuid& BaseObject::id()const
 {
 	return id_;
 }

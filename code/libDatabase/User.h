@@ -16,9 +16,9 @@ private:
 	QString password_;
 
 public:
-	const QString& userName();
+	const QString& userName()const;
 	void setUserName(const QString& userName);
 
-	const QString& password();
+	const QString& password()const;
 	void setPassword(const QString& password);
 };

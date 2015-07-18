@@ -12,7 +12,7 @@ User::User(QObject* parent)
 {
 }
 
-const QString& User::userName()
+const QString& User::userName()const
 {
 	return userName_;
 }
@@ -22,7 +22,7 @@ void User::setUserName(const QString& userName)
 	userName_ = userName;
 }
 
-const QString& User::password()
+const QString& User::password()const
 {
 	return password_;
 }
