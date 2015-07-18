@@ -11,7 +11,7 @@
 class BaseObject : public QObject
 {
 public:
-	BaseObject(BaseObject* parent = 0);
+	BaseObject(QObject* parent = 0);
 private:
 	QUuid id_;
 

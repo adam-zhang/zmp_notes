@@ -7,7 +7,7 @@
 
 #include "BaseObject.h"
 
-BaseObject::BaseObject(BaseObject* parent)
+BaseObject::BaseObject(QObject* parent)
 	: QObject(parent)
 {
 }
