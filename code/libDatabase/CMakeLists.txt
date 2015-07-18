@@ -9,7 +9,7 @@ set(sources Precondition.cpp
 	BaseObject.cpp)
 set(headers Precondition.h
 	BaseObject.h)
-add_library(database ${sources}
+add_library(database SHARED ${sources}
 	${headers})
 target_link_libraries(database ${QT_LIBRARIES})
 set_target_properties(database PROPERTIES OUTPUT_NAME Database)
