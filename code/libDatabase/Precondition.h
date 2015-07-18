@@ -9,7 +9,17 @@
 
 class Precondition
 {
+	Precondition();
 	static std::shared_ptr<Precondition> instance_;
 public:
+	~Precondition();
 	static Precondition& instance();
+
+public:
+	int createTables();
+private:
+	QSqlDatabase db;
+private:
+	bool createDBFile();
+
 };

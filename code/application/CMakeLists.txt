@@ -7,7 +7,7 @@ set(headers)
 #set(moc_headers)
 #set(moc_sources ${moc_headers})
 #QT4_WRAP_CPP(mocs ${moc_headers})
-add_executable(test ${sources} 
+add_executable(notes ${sources} 
 	#${mocs} 
 	${headers})
 #target_link_libraries(test ${QT_LIBRARIES})
