@@ -1,14 +1,15 @@
 project(notes)
 cmake_minimum_required(VERSION 2.8)
-#find_package(Qt4 REQUIRED)
-#include(${QT_USE_FILE})
+find_package(Qt4 REQUIRED)
+include(${QT_USE_FILE})
 set(sources appMain.cpp)
 set(headers) 
-#set(moc_headers)
-#set(moc_sources ${moc_headers})
-#QT4_WRAP_CPP(mocs ${moc_headers})
+set(moc_headers)
+set(moc_sources ${moc_headers})
+set(QT_USE_QTSQL TRUE)
+QT4_WRAP_CPP(mocs ${moc_headers})
 add_executable(notes ${sources} 
-	#${mocs} 
+	${mocs} 
 	${headers})
-#target_link_libraries(test ${QT_LIBRARIES})
+target_link_libraries(notes ${QT_LIBRARIES})
 

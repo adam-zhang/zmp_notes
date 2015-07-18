@@ -6,8 +6,8 @@
  ************************************************************************/
 
 #include "Precondition.h"
-#include <QSql/QSqlDatabase>
-#include <QSqlQuery>
+#include "../errors/AppErrors.h"
+#include <QtSql/QSqlQuery>
 #include <QFileInfo>
 
 using namespace std;
@@ -50,13 +50,13 @@ int Precondition::createTables()
 			"password nvarchar(50));",
 		"create table content(id uuid primary key,"
 			"userid uuid, foreign key(userid) reference user(id),"
-			"parentid uuid, foreign key(id) reference content(id),
+			"parentid uuid, foreign key(id) reference content(id),"
 			"title nvarchar(1000))"
 	};
 	QSqlQuery query;
 	for(vector<string>::iterator i = sql.begin(); i != sql.end(); ++i)
 	{
-		query.prepar(*i);
+		query.prepare((*i).c_str());
 		if (!query.exec())
 			return CREATE_DATABASE_FAILED;
 	}

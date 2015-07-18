@@ -6,6 +6,7 @@
  ************************************************************************/
 
 #include <memory>
+#include <QtSql/QSqlDatabase>
 
 class Precondition
 {
