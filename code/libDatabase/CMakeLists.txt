@@ -5,12 +5,12 @@ find_package(Qt4 REQUIRED)
 include(${QT_USE_FILE})
 set(QT_DONT_USE_QTGUI TRUE)
 set(QT_USE_QTSQL TRUE)
-set(sources Precondition.cpp
+set(sources Database.cpp
 	BaseObject.cpp
 	User.cpp
 	Content.cpp
 	)
-set(headers Precondition.h
+set(headers Database.h
 	BaseObject.h
 	User.h
 	Content.h

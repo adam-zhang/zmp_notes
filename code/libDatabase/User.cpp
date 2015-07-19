@@ -6,6 +6,7 @@
  ************************************************************************/
 
 #include "User.h"
+#include "Database.h"
 #include <QtSql/QSqlDatabase>
 #include <QtSql/QSqlQuery>
 using namespace std;

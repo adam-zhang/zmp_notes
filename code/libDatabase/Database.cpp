@@ -1,5 +1,5 @@
 /*************************************************************************
-    > File Name: Precondition.cpp
+    > File Name: Database.cpp
     > Author: Mingping (Adam) Zhang
     > Mail: mingpingzhang@163.com 
     > Created Time: 2015- 7月-18 14时36分55秒
@@ -12,14 +12,14 @@
 
 using namespace std;
 
-shared_ptr<Precondition> Precondition::instance_;
+shared_ptr<Database> Database::instance_;
 
-Precondition::Precondition()
+Database::Database()
 {
 	createDBFile();
 }
 
-bool Precondition::createDBFile()
+bool Database::createDBFile()
 {
 	QString fileName("content.db");
 	QFileInfo fileInfo(fileName);
@@ -33,15 +33,15 @@ bool Precondition::createDBFile()
 	return true;
 }
 
-Precondition& Precondition::instance()
+Database& Database::instance()
 {
 	if (!instance_)
 		if (!instance_)
-			instance_ = shared_ptr<Precondition>(new Precondition);
+			instance_ = shared_ptr<Database>(new Database);
 	return *instance_;
 }
 
-vector<string> Precondition::getSqlScripts()
+vector<string> Database::getSqlScripts()
 {
 	vector<string> sql =
 	{
@@ -59,12 +59,12 @@ vector<string> Precondition::getSqlScripts()
 	return sql;
 }
 
-QSqlDatabase* Precondition::db()
+QSqlDatabase* Database::db()
 {
 	return &db_;
 }
 
-int Precondition::createTables()
+int Database::createTables()
 {
 	vector<string> sql = getSqlScripts();
 		QSqlQuery query;
