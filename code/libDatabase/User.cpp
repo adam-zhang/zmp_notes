@@ -9,6 +9,7 @@
 #include "Database.h"
 #include <QtSql/QSqlDatabase>
 #include <QtSql/QSqlQuery>
+#include <QVariant>
 using namespace std;
 
 User::User(QObject* parent)
@@ -48,7 +49,7 @@ vector<shared_ptr<User>> User::getAllUsers()
 	while(query.next())
 	{
 		shared_ptr<User> user(new User);
-		user->setId(query.value(0).toString());
+		user->setId(query.value(0).toByteArray());
 		user->setUserName(query.value(1).toString());
 		user->setPassword(query.value(2).toString());
 		data.push_back(user);
