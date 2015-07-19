@@ -5,7 +5,7 @@
     > Created Time: 2015- 7月-18 14时36分55秒
  ************************************************************************/
 
-#include "Precondition.h"
+#include "Database.h"
 #include "../errors/AppErrors.h"
 #include <QtSql/QSqlQuery>
 #include <QFileInfo>
@@ -25,8 +25,8 @@ bool Precondition::createDBFile()
 	QFileInfo fileInfo(fileName);
 	if (!fileInfo.exists())
 	{
-		db = QSqlDatabase::addDatabase("QSQLITE");
-		db.setDatabaseName("content.db");
+		db_ = QSqlDatabase::addDatabase("QSQLITE");
+		db_.setDatabaseName("content.db");
 		if (!createTables())
 			return false;
 	}
@@ -41,7 +41,7 @@ Precondition& Precondition::instance()
 	return *instance_;
 }
 
-int Precondition::createTables()
+vector<string> Precondition::getSqlScripts()
 {
 	vector<string> sql =
 	{
@@ -51,13 +51,28 @@ int Precondition::createTables()
 		"create table content(id uuid primary key,"
 			"userid uuid, foreign key(userid) reference user(id),"
 			"parentid uuid, foreign key(id) reference content(id),"
-			"title nvarchar(1000))"
+			"title nvarchar(1000));",
+		"create table images(id uuid primary key,"
+			"contentid uuid, foreign key(contentid) reference content(id),"
+			"data image);",
 	};
-	QSqlQuery query;
+	return sql;
+}
+
+QSqlDatabase* Precondition::db()
+{
+	return &db_;
+}
+
+int Precondition::createTables()
+{
+	vector<string> sql = getSqlScripts();
+		QSqlQuery query;
 	for(vector<string>::iterator i = sql.begin(); i != sql.end(); ++i)
 	{
 		query.prepare((*i).c_str());
 		if (!query.exec())
 			return CREATE_DATABASE_FAILED;
 	}
+	return 0;
 }

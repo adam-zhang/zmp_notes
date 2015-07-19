@@ -6,6 +6,7 @@
  ************************************************************************/
 
 #include <memory>
+#include <vector>
 #include <QtSql/QSqlDatabase>
 
 class Precondition
@@ -16,11 +17,13 @@ public:
 	~Precondition();
 	static Precondition& instance();
 
-public:
+private:
 	int createTables();
 private:
-	QSqlDatabase db;
+	QSqlDatabase db_;
 private:
 	bool createDBFile();
-
+	std::vector<std::string> getSqlScripts();
+public:
+	QSqlDatabase* db();
 };

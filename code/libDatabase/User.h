@@ -6,6 +6,8 @@
  ************************************************************************/
 
 #include "BaseObject.h"
+#include <memory>
+#include <vector>
 
 class User : public BaseObject
 {
@@ -21,4 +23,8 @@ public:
 
 	const QString& password()const;
 	void setPassword(const QString& password);
+public:
+	static std::vector<std::shared_ptr<User>> getAllUsers();
+	static bool verifyUser(const std::shared_ptr<User> user);
+	static std::shared_ptr<User> getUser(const QString& userName, const QString& password);
 };
