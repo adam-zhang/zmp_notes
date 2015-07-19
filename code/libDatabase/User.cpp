@@ -10,6 +10,7 @@
 #include <QtSql/QSqlDatabase>
 #include <QtSql/QSqlQuery>
 #include <QVariant>
+
 using namespace std;
 
 User::User(QObject* parent)
@@ -56,4 +57,20 @@ vector<shared_ptr<User>> User::getAllUsers()
 	}
 	db->close();
 	return data;
+}
+
+bool User::verifyUser(const shared_ptr<User> user)
+{
+	QString sql("select count(id) from user where userName=:userName and password = :password");
+	QSqlDatabase* db = Database::instance().db();
+	db->open();
+	QSqlQuery query(sql);
+	query.bindValue(":userName", user->userName());
+	query.bindValue(":password", user->password());
+	query.exec();
+	bool ret = false;
+	if (query.first())
+		ret = query.value(0).toInt();
+	db->close();	
+	return ret;
 }
