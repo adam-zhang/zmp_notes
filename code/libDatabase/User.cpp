@@ -74,3 +74,22 @@ bool User::verifyUser(const shared_ptr<User> user)
 	db->close();	
 	return ret;
 }
+
+shared_ptr<User> User::getUser(const QString& userName, const QString& password)
+{
+	QString sql("select * from user where userName = :userName and password = :password");
+	Database::instance().db()->open();
+	shared_ptr<User> user(new User);
+	QSqlQuery query(sql);
+	query.bindValue(":userName", userName);
+	query.bindValue(":password", password);
+	query.exec();
+	if (query.first())
+	{
+		user->setId(query.value(0).toByteArray());
+		user->setUserName(query.value(0).toString());
+		user->setPassword(query.value(0).toString());
+	}
+	Database::instance().db()->close();
+	return 0;
+}
