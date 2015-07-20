@@ -4,8 +4,13 @@ find_package(Qt4 REQUIRED)
 include(${QT_USE_FILE})
 set(sources 
 	#appMain.cpp 
-	MainWindow.cpp)
-set(moc_headers MainWindow.h)
+	MainWindow.cpp
+	execute.cpp
+	)
+set(moc_headers 
+	MainWindow.h
+	execute.h
+	)
 set(headers ${moc_headers}) 
 #set(moc_sources ${headers})
 QT4_WRAP_CPP(mocs ${headers})

@@ -5,14 +5,10 @@
     > Created Time: 2015- 7月-18 08时36分48秒
  ************************************************************************/
 
-#include <iostream>
-#include <QtSql/QSqlDatabase>
-#include <QApplication>
-
-using namespace std;
+#include "../libUI/execute.h"
 
 int main(int argc, char** argv)
 {
-	return 0;
+	return execute_main(argc, argv);
 };
 
